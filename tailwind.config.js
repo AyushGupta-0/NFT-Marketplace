@@ -1,18 +1,33 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      keyframes: {
+        breath: {
+          "25%, 75%": { width: "12rem", height: "12rem" },
+          "50%": { width: "14rem", height: "14rem" },
+        },
       },
+      animation: {
+        breath: "breath 10s ease-in-out infinite",
+      },
+      colors: {
+        background: "#0C0E12",
+        footer: "#070707",
+        dark: "#0C0E12",
+        dark_Green: "#0A3A1F",
+        primary_Colour: "#1EBE5E",
+        content_Grey: "#888A8F",
+        green: "#1EBE5E",
+        box: "#1D1F24",
+      },
+      backgroundImage: {},
     },
   },
-  plugins: [],
-}
+  plugins: [require("tailwind-scrollbar-hide")],
+};
