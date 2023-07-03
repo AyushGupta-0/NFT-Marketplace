@@ -1,11 +1,7 @@
-
 import Chat from '@/components/Chat'
 import "./globals.css";
 import Providers from '@/components/Providers'
 import { Inter } from "next/font/google";
-
-
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
