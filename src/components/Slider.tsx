@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FC } from "react";
 
 import demoNft from "@/assets/banner-demo.png";
+import Button from "./ui/Button";
 interface SliderProps {
   data: string;
 }
@@ -30,12 +31,8 @@ const Slider: FC<SliderProps> = ({ data }) => {
 
         {/* buttons */}
         <div className="flex gap-3 justify-between items-center  text-base ">
-          <button className="bg-green text-dark_Green font-semibold rounded-lg py-[0.67rem] px-7">
-            Minting Now
-          </button>
-          <button className="bg-dark_Green text-green rounded-lg py-[0.67rem] px-4">
-            View Collections
-          </button>
+          <Button className="w-full md:max-w-max">Minting Now</Button>
+          <Button className="w-full md:max-w-max">View Collections</Button>
         </div>
       </div>
     </div>
