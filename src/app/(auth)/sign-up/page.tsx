@@ -3,19 +3,15 @@ import { FC, useState } from "react";
 import Button from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
 import { Icons } from "@/components/ui/Icons";
-
 interface pageProps {}
 
-const makeapikey = async () => {};
-
 const Page: FC<pageProps> = ({}) => {
-  const [connectWallet, setConnectWallet] = useState(false);
   const router = useRouter();
   return (
     <main className="w-full h-full  flex flex-col justify-center md:items-center gap-4 px-6 mt-10 md:mt-0 ">
       <div className="flex flex-col gap-4 w-full max-w-[25.5rem] ">
         <h1 className="gardient-color-green text-[2rem] font-semibold">
-          Sign In
+          Connect Wallet or Sign Up
         </h1>
 
         {/* button container */}
@@ -42,10 +38,6 @@ const Page: FC<pageProps> = ({}) => {
             <Icons.google className="h-6 w-6" />
             Continue with Google
           </Button>
-          <Button onClick={() => router.push("/passkeys")} className="gap-2">
-            <Icons.key className=" h-6 w-6" />
-            Continue with Passkeys
-          </Button>
         </div>
 
         {/* seperator */}
@@ -57,46 +49,21 @@ const Page: FC<pageProps> = ({}) => {
 
         {/* anonymous user*/}
         <div className=" flex flex-col gap-5">
-          <Button
-            onClick={() => setConnectWallet(!connectWallet)}
-            className=" w-full"
-          >
-            Continue with Xumm
-          </Button>
+          <Button className=" w-full">Continue with Xumm</Button>
 
           <h1 className="text-content_Grey">
-            Don&apos;t have an account yet?{" "}
+            Already have an account?{" "}
             <span
-              onClick={() => router.push("/sign-up")}
+              onClick={() => router.push("/sign-in")}
               className="text-green ml-2 cursor-pointer"
             >
-              Register here
+              Login here
             </span>
           </h1>
         </div>
       </div>
-
-      {/* popup modal for qrcode */}
-      {connectWallet && (
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-40 flex items-center justify-center">
-          <div className="bg-white rounded-lg shadow-lg max-w-3xl w-full">
-            <div className="flex justify-end w-full">
-              <Icons.close
-                className="h-6 w-6 cursor-pointer"
-                onClick={() => setConnectWallet(!connectWallet)}
-              />
-            </div>
-            {/* <img src="" alt="" /> */}
-            <h1>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque
-              natus, tempore obcaecati nihil nisi soluta ducimus minus aut. Unde
-              distinctio deleniti repellendus ratione numquam. Quod rem dolorum
-              eum excepturi autem.
-            </h1>
-          </div>
-        </div>
-      )}
     </main>
   );
 };
+
 export default Page;

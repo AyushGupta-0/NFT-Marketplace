@@ -1,0 +1,60 @@
+import {
+  ShoppingCart,
+  ChevronRight,
+  ChevronLeft,
+  Twitter,
+  Youtube,
+  Instagram,
+  Search,
+  Image,
+  Layers,
+  Banknote,
+  KeyRound,
+  Wallet,
+  User,
+  Gauge,
+  Heart,
+  LayoutList,
+  Bell,
+  Plus,
+  Flag,
+  AlignRight,
+  X,
+  type Icon as LucideIcon,
+  type LucideProps,
+} from "lucide-react";
+import { RiLogoutCircleLine } from "react-icons/ri";
+import { FaDiscord, FaTiktok } from "react-icons/fa";
+import { SlSocialReddit } from "react-icons/sl";
+import { FcGoogle } from "react-icons/fc";
+
+export type Icon = LucideIcon;
+
+export const Icons = {
+  chevronLeft: ChevronLeft,
+  chevronRight: ChevronRight,
+  dashboard: Gauge,
+  collection: Layers,
+  nft: Image,
+  favorites: Heart,
+  purchase: Banknote,
+  profile: User,
+  wallet: Wallet,
+  notifications: Bell,
+  search: Search,
+  twitter: Twitter,
+  youtube: Youtube,
+  instagram: Instagram,
+  shoppingCart: ShoppingCart,
+  offers: LayoutList,
+  add: Plus,
+  report: Flag,
+  options: AlignRight,
+  key: KeyRound,
+  close: X,
+  logout: ({ ...props }: LucideProps) => <RiLogoutCircleLine {...props} />,
+  discord: ({ ...props }: LucideProps) => <FaDiscord {...props} />,
+  tiktok: ({ ...props }: LucideProps) => <FaTiktok {...props} />,
+  reddit: ({ ...props }: LucideProps) => <SlSocialReddit {...props} />,
+  google: ({ ...props }: LucideProps) => <FcGoogle {...props} />,
+};

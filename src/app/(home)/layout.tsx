@@ -1,5 +1,5 @@
-import Footer from "@/components/Footer";
-import NavBar from "@/components/NavBar";
+import Footer from "@/components/layout/Footer";
+import NavBar from "@/components/layout/NavBar";
 import Image from "next/image";
 import { FC, ReactNode } from "react";
 import heroBg from "@/assets/hero-bg.png";
