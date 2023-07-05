@@ -46,7 +46,7 @@ export default function NavBar({}: Props) {
         </div>
 
         <div className="hidden md:flex gap-4">
-          <button className=" border-none py-3 px-4 bg-[transparent] rounded-lg [background:linear-gradient(90deg,_#78FFDF,_#1EBE5E)] font-semibold  ">
+          <button className=" text-black border-none py-3 px-4 bg-[transparent] rounded-lg [background:linear-gradient(90deg,_#78FFDF,_#1EBE5E)] font-semibold  ">
             Sign Up
           </button>
           <div className="rounded-lg flex flex-row py-3 px-0 items-center justify-start text-sm text-green">
