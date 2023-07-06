@@ -12,7 +12,7 @@ import { CgMenuRightAlt } from "react-icons/cg";
 type Props = {};
 
 const pageLinks = [
-  { name: "Explore", link: "/" },
+  { name: "Explore", link: "/explore" },
   { name: "Mint", link: "/" },
   { name: "Launchpad", link: "/" },
 ];

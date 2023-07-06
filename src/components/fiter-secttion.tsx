@@ -3,7 +3,7 @@ import { LuSearch } from "react-icons/lu";
 
 const FiterSecttion: NextPage = () => {
   return (
-    <div className="flex flex-col items-start justify-start gap-[1.25rem] text-left text-[1.5rem] text-white font-inter">
+    <div className=" flex flex-col items-start justify-start gap-[1.25rem] text-left text-[1.5rem] text-white font-inter">
       <div className="self-stretch flex flex-row items-center justify-start gap-[0.75rem]">
         <img
           className="relative w-[1.5rem] h-[1.5rem] overflow-hidden shrink-0"
@@ -14,7 +14,7 @@ const FiterSecttion: NextPage = () => {
           Filter
         </div>
       </div>
-      <div className="flex flex-col items-start justify-start gap-[2rem] text-[1.25rem]">
+      <div className="hidden md:flex flex-col items-start justify-start gap-[2rem] text-[1.25rem]">
         <div className="flex flex-col items-start justify-start gap-[0.75rem]">
           <div className="w-[11.5rem] flex flex-row items-center justify-start gap-[0.5rem]">
             <div className="flex-1 relative tracking-[-0.02em] leading-[1.88rem] font-semibold">
@@ -45,9 +45,9 @@ const FiterSecttion: NextPage = () => {
               <LuSearch className=" h-6 w-6 shrink-0  md:absolute right-0 top-1/4  z-10  md:mx-2  text-green-700 " />
             </div>
             <div className="self-stretch flex flex-row items-center justify-start gap-[0.63rem]">
-              <div className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
+              <button className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
                 <div className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0" />
-              </div>
+              </button>
               <div className="flex-1 flex flex-col items-start justify-start gap-[0.25rem]">
                 <div className="self-stretch relative tracking-[-0.02em] leading-[1.5rem]">
                   The Digital Art...
@@ -58,9 +58,9 @@ const FiterSecttion: NextPage = () => {
               </div>
             </div>
             <div className="self-stretch flex flex-row items-center justify-start gap-[0.63rem]">
-              <div className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
+              <button className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
                 <div className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0" />
-              </div>
+              </button>
               <div className="flex-1 flex flex-col items-start justify-start gap-[0.25rem]">
                 <div className="self-stretch relative tracking-[-0.02em] leading-[1.5rem]">
                   Crypto Beats
@@ -71,9 +71,9 @@ const FiterSecttion: NextPage = () => {
               </div>
             </div>
             <div className="self-stretch flex flex-row items-center justify-start gap-[0.63rem]">
-              <div className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
+              <button className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
                 <div className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0" />
-              </div>
+              </button>
               <div className="flex-1 flex flex-col items-start justify-start gap-[0.25rem]">
                 <div className="self-stretch relative tracking-[-0.02em] leading-[1.5rem]">
                   Reality Beyond
@@ -84,9 +84,9 @@ const FiterSecttion: NextPage = () => {
               </div>
             </div>
             <div className="self-stretch flex flex-row items-center justify-start gap-[0.63rem]">
-              <div className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
+              <button className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
                 <div className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0" />
-              </div>
+              </button>
               <div className="flex-1 flex flex-col items-start justify-start gap-[0.25rem]">
                 <div className="self-stretch relative tracking-[-0.02em] leading-[1.5rem]">
                   Cosmic Journey
@@ -97,9 +97,9 @@ const FiterSecttion: NextPage = () => {
               </div>
             </div>
             <div className="self-stretch flex flex-row items-center justify-start gap-[0.63rem]">
-              <div className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
+              <button className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
                 <div className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0" />
-              </div>
+              </button>
               <div className="flex-1 flex flex-col items-start justify-start gap-[0.25rem]">
                 <div className="self-stretch relative tracking-[-0.02em] leading-[1.5rem]">
                   Nature’s Symphony
@@ -124,25 +124,25 @@ const FiterSecttion: NextPage = () => {
           </div>
           <div className="flex flex-col items-start justify-start gap-[0.75rem] text-[1rem]">
             <div className="self-stretch flex flex-row items-center justify-start gap-[0.63rem]">
-              <div className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
+              <button className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
                 <div className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0" />
-              </div>
+              </button>
               <div className="relative tracking-[-0.02em] leading-[1.5rem] inline-block w-[8.63rem] shrink-0">
                 On Sale
               </div>
             </div>
             <div className="self-stretch flex flex-row items-center justify-start gap-[0.63rem]">
-              <div className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
+              <button className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
                 <div className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0" />
-              </div>
+              </button>
               <div className="relative tracking-[-0.02em] leading-[1.5rem] inline-block w-[8.63rem] shrink-0">
                 Bundles
               </div>
             </div>
             <div className="self-stretch flex flex-row items-center justify-start gap-[0.63rem]">
-              <div className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
+              <button className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
                 <div className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0" />
-              </div>
+              </button>
               <div className="relative tracking-[-0.02em] leading-[1.5rem] inline-block w-[8.63rem] shrink-0">
                 Offers
               </div>
@@ -199,41 +199,41 @@ const FiterSecttion: NextPage = () => {
           </div>
           <div className="flex flex-col items-start justify-start gap-[0.75rem] text-[1rem]">
             <div className="self-stretch flex flex-row items-center justify-start gap-[0.63rem]">
-              <div className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
+              <button className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
                 <div className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0" />
-              </div>
+              </button>
               <div className="relative tracking-[-0.02em] leading-[1.5rem] inline-block w-[8.63rem] shrink-0">
                 Art
               </div>
             </div>
             <div className="self-stretch flex flex-row items-center justify-start gap-[0.63rem]">
-              <div className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
+              <button className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
                 <div className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0" />
-              </div>
+              </button>
               <div className="relative tracking-[-0.02em] leading-[1.5rem] inline-block w-[8.63rem] shrink-0">
                 Virtual Reality
               </div>
             </div>
             <div className="self-stretch flex flex-row items-center justify-start gap-[0.63rem]">
-              <div className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
+              <button className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
                 <div className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0" />
-              </div>
+              </button>
               <div className="relative tracking-[-0.02em] leading-[1.5rem] inline-block w-[8.63rem] shrink-0">
                 Rare Virtual Items
               </div>
             </div>
             <div className="self-stretch flex flex-row items-center justify-start gap-[0.63rem]">
-              <div className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
+              <button className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
                 <div className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0" />
-              </div>
+              </button>
               <div className="relative tracking-[-0.02em] leading-[1.5rem] inline-block w-[8.63rem] shrink-0">
                 Gaming
               </div>
             </div>
             <div className="self-stretch flex flex-row items-center justify-start gap-[0.63rem]">
-              <div className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
+              <button className="rounded-lg bg-box flex flex-row p-[0.5rem] items-center justify-start border-[1px] border-solid border-line">
                 <div className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0" />
-              </div>
+              </button>
               <div className="relative tracking-[-0.02em] leading-[1.5rem] inline-block w-[8.63rem] shrink-0">
                 Sport Collection
               </div>
