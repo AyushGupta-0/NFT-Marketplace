@@ -15,7 +15,7 @@ import { Icons } from "../ui/Icons";
 type Props = {};
 
 const pageLinks = [
-  { name: "Explore", link: "/" },
+  { name: "Explore", link: "/explore" },
   { name: "Mint", link: "/" },
   { name: "Launchpad", link: "/" },
 ];
