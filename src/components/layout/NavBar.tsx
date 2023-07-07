@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Button from "../ui/Button";
+
 // images
 import logo from "@/assets/xrp-boys.svg";
 
@@ -8,6 +10,7 @@ import logo from "@/assets/xrp-boys.svg";
 import { LuSearch } from "react-icons/lu";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { CgMenuRightAlt } from "react-icons/cg";
+import { Icons } from "../ui/Icons";
 
 type Props = {};
 
@@ -42,22 +45,18 @@ export default function NavBar({}: Props) {
             placeholder="Search..."
             className=" hidden md:block rounded-lg bg-box box-border w-[25rem] py-3 pl-6  pr-9 focus:outline-none placeholder:text-gray-400"
           ></input>
-          <LuSearch className=" h-6 w-6 shrink-0  md:absolute right-0 top-1/4  z-10  md:mx-2  text-green-500 " />
+          <Icons.search className=" h-6 w-6 shrink-0  md:absolute right-0 top-1/4  z-10  md:mx-2 text-green-500 " />
         </div>
 
         <div className="hidden md:flex gap-4">
-          <button className=" text-black border-none py-3 px-4 bg-[transparent] rounded-lg [background:linear-gradient(90deg,_#78FFDF,_#1EBE5E)] font-semibold  ">
-            Sign Up
-          </button>
-          <div className="rounded-lg flex flex-row py-3 px-0 items-center justify-start text-sm text-green">
-            <div className="relative tracking-[-0.02em] leading-[21px] font-semibold">
-              Sign In
-            </div>
-          </div>
+          <Button variant={"gradiend"}>Sign Up</Button>
+          <Button variant={"transparent"} className=" py-3 px-0 text-sm ">
+            Sign In
+          </Button>
         </div>
         {/* cart */}
-        <RiShoppingCartLine className=" w-6 h-6 overflow-hidden shrink-0" />
-        <CgMenuRightAlt className=" w-6 h-6 overflow-hidden shrink-0 md:hidden " />
+        <Icons.shoppingCart className=" w-6 h-6 overflow-hidden shrink-0" />
+        <Icons.options className=" w-6 h-6 overflow-hidden shrink-0 md:hidden " />
       </div>
     </nav>
   );
