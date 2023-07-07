@@ -1,11 +1,11 @@
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/layout/NavBar";
 import Image from "next/image";
 import { FC, ReactNode } from "react";
 import heroBg from "@/assets/hero-bg.png";
 import FiterSecttion from "@/components/fiter-secttion";
 import ExploreItems from "@/components/explore-items";
 import ExploreSubNavbar from "@/components/explore-sub-navbar";
-import Footer from "@/components/Footer";
+import Footer from "@/components/layout/Footer";
 
 interface layoutProps {
   children: ReactNode;
