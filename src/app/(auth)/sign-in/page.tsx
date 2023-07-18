@@ -6,15 +6,8 @@ import { Icons } from "@/components/ui/Icons";
 import socket from "@/lib/socket";
 
 import { QRCode } from "react-qrcode-logo";
-import {isDesktop, isMobile} from 'react-device-detect'
+import { isDesktop, isMobile } from "react-device-detect";
 import logo from "@/assets/xrp-boys.svg";
-
-
-
-
-
-
-
 
 interface pageProps {}
 
@@ -22,23 +15,30 @@ const makeapikey = async () => {};
 
 const Page: FC<pageProps> = ({}) => {
   const [connectWallet, setConnectWallet] = useState(false);
-  const [qrcode, setQrcode] = useState("");  
+  const [qrcode, setQrcode] = useState("");
   const router = useRouter();
 
-
   const handleClick = () => {
-    if(isDesktop){
-      fetch(`${process.env.NEXT_PUBLIC_SERVERURL}:${process.env.NEXT_PUBLIC_SERVERPORT}/api/auth/loginAccountWithXumm`).then(res => res.json()).then(data => {
-        socket.on('accountLoggedIn', (data) => {
-          console.log(data);
-        })
-        setQrcode(data.url);
-        setConnectWallet(true);
-      })
-    }else if(isMobile){
-      fetch(`${process.env.NEXT_PUBLIC_SERVERURL}:${process.env.NEXT_PUBLIC_SERVERPORT}/api/auth/loginAccountWithXumm`).then(res => res.json()).then(data => {
-        router.push(data.url);
-      })
+    if (isDesktop) {
+      fetch(
+        `${process.env.NEXT_PUBLIC_SERVERURL}:${process.env.NEXT_PUBLIC_SERVERPORT}/api/auth/loginAccountWithXumm`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          socket.on("accountLoggedIn", (data) => {
+            console.log(data);
+          });
+          setQrcode(data.url);
+          setConnectWallet(true);
+        });
+    } else if (isMobile) {
+      fetch(
+        `${process.env.NEXT_PUBLIC_SERVERURL}:${process.env.NEXT_PUBLIC_SERVERPORT}/api/auth/loginAccountWithXumm`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          router.push(data.url);
+        });
     }
   };
   return (
@@ -87,10 +87,7 @@ const Page: FC<pageProps> = ({}) => {
 
         {/* anonymous user*/}
         <div className=" flex flex-col gap-5">
-          <Button
-            onClick={handleClick}
-            className=" w-full"
-          >
+          <Button onClick={handleClick} className=" w-full">
             Continue with Xumm
           </Button>
 
@@ -111,17 +108,29 @@ const Page: FC<pageProps> = ({}) => {
         <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center">
           <div className="bg-gray-900 rounded-lg shadow-lg max-w-3xl w-full">
             <div className="flex justify-end w-full">
-              <Icons.close
+              <Icons.X
                 className="h-6 w-6 cursor-pointer text-white"
                 onClick={() => setConnectWallet(!connectWallet)}
               />
             </div>
             {/* <img src="" alt="" /> */}
             <div className="pl-20 pb-8">
-            <QRCode value={qrcode} quietZone={50} size={300} fgColor="blue" eyeColor={["green","green","green"] } qrStyle="dots" eyeRadius={[[30,30,0,30],[30,30,30,0],[30,0,30,30]]}/>
+              <QRCode
+                value={qrcode}
+                quietZone={50}
+                size={300}
+                fgColor="blue"
+                eyeColor={["green", "green", "green"]}
+                qrStyle="dots"
+                eyeRadius={[
+                  [30, 30, 0, 30],
+                  [30, 30, 30, 0],
+                  [30, 0, 30, 30],
+                ]}
+              />
             </div>
             <h1 className=" pl-6 pr-6 tracking-[-0.02em] leading-7 text-xl md:leading-9 md:text-2xl z-10  font-semibold gardient-color-green">
-            Scan this QR code with your Xumm app to connect your wallet {" "}
+              Scan this QR code with your Xumm app to connect your wallet{" "}
             </h1>
           </div>
         </div>

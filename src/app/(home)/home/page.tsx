@@ -58,11 +58,11 @@ export default function page({}: Props) {
             {trendingTime.map((_, i) => {
               return (
                 <span className="py-3 px-[10px] active:bg-green">
-                  {trendingTime[i]}
+                {trendingTime[i]}
                 </span>
-              );
-            })}
-          </div> */}
+                );
+              })}
+            </div> */}
         </div>
 
         {/* rankings */}
