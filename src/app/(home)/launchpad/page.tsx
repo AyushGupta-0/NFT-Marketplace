@@ -6,7 +6,6 @@ import Slider from "@/components/Slider";
 
 // icons
 
-
 type Props = {};
 const collectionNft = [
   {
@@ -26,10 +25,6 @@ export default function page({}: Props) {
       <div className="pr-6 md:pr-[4.3rem] z-10">
         <Slider data="" />
       </div>
-
-      
-
-     
     </main>
   );
 }

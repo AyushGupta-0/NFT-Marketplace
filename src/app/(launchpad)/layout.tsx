@@ -12,25 +12,24 @@ interface layoutProps {
 
 const layout = async ({ children }: layoutProps) => {
   return (
-    
     <div className="min-h-screen w-full flex flex-col relative bg-background">
       <NavBar />
       <main className="flex-1">{children}</main>
-      <div className="pl-20 pb-4 pt-5" >
-      <h1 className="tracking-[-0.02em] leading-7 text-xl md:leading-9 md:text-2xl z-10  font-semibold gardient-color-green">
-        Live Launches{" "}
-      </h1>
+      <div className="pl-20 pb-4 pt-5">
+        <h1 className=" leading-7 text-xl md:leading-9 md:text-2xl z-10  font-semibold gardient-color-green">
+          Live Launches{" "}
+        </h1>
       </div>
       <div className="pl-20">
-      <LiveLaunches />
+        <LiveLaunches />
       </div>
       <div className="pl-20 pb-4 pt-12">
-      <h1 className="tracking-[-0.02em] leading-7 text-xl md:leading-9 md:text-2xl z-10  font-semibold gardient-color-green">
-        Upcoming Projects{" "}
-      </h1>
+        <h1 className=" text-xl md:leading-9 md:text-2xl z-10  font-semibold gardient-color-green">
+          Upcoming Projects{" "}
+        </h1>
       </div>
       <div className="pl-20 pb-20">
-      <UpcomingProjects />
+        <UpcomingProjects />
       </div>
       <Footer />
     </div>

@@ -71,7 +71,7 @@ export default function Footer({}: Props) {
           {/* left container */}
           <div className="flex flex-col items-center justify-center md:items-start md:justify-start gap-4">
             <Image src={logo} alt="logo" />
-            <p className="relative text-sm tracking-[-0.02em] leaading-5 text-content_Grey text-center inline-block md:max-w-[18.5rem]">
+            <p className=" text-sm tracking-[-0.02em] leaading-5 text-content_Grey text-center inline-block md:max-w-[18.5rem]">
               {`NFT XRP's innovative platform for exploring, buying, and selling
               unique and valuable digital artwork.`}
             </p>
@@ -93,7 +93,7 @@ export default function Footer({}: Props) {
           <div className="flex flex-wrap  flex-row items-start justify-start gap-10 text-base ">
             {/* market secction */}
             <div className="flex flex-col items-start justify-start gap-3">
-              <h1 className="relative tracking-[-0.02em] text-content_Grey font-medium inline-block w-36 md:w-[11.5rem]">
+              <h1 className=" tracking-[-0.02em] text-content_Grey font-medium inline-block w-36 md:w-[11.5rem]">
                 Marketplace
               </h1>
               <div className="flex flex-col items-start justify-start gap-[0.9rem] ">
@@ -109,7 +109,7 @@ export default function Footer({}: Props) {
 
             {/* Account Section */}
             <div className="flex flex-col items-start justify-start gap-3">
-              <h1 className="relative tracking-[-0.02em] text-content_Grey  font-medium inline-block md:w-[11.5rem]">
+              <h1 className=" tracking-[-0.02em] text-content_Grey  font-medium inline-block md:w-[11.5rem]">
                 Account
               </h1>
               <div className="flex flex-col items-start justify-start gap-[0.9rem] ">
@@ -125,7 +125,7 @@ export default function Footer({}: Props) {
 
             {/* Pages Section  */}
             <div className="flex flex-col items-start justify-start gap-3">
-              <h1 className="relative tracking-[-0.02em] text-content_Grey  font-medium inline-block w-[11.5rem]">
+              <h1 className=" tracking-[-0.02em] text-content_Grey  font-medium inline-block w-[11.5rem]">
                 Pages
               </h1>
               <div className="flex flex-col items-start justify-start gap-[14px] ">
