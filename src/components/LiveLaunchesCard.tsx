@@ -1,22 +1,42 @@
-import type { NextPage } from "next";
+// Note: Live Launches Card Component
+import Image from "next/image";
+import { FC } from "react";
 
-const LiveLaunchesCard: NextPage = () => {
+// data props
+
+type dataProps = {
+  url: any;
+  name: string;
+  floor: string;
+  whitelistDate: string;
+  items: string;
+  by: string;
+};
+
+interface LiveLaunchesCardProps {
+  data: dataProps;
+}
+
+const LiveLaunchesCard: FC<LiveLaunchesCardProps> = ({ data }) => {
   return (
     <div className="rounded-lg bg-box w-[18.5rem] overflow-hidden shrink-0 flex flex-col items-start justify-start gap-[1rem]">
-      <img
-        className="relative w-[18.5rem] h-[15.31rem] object-cover"
-        alt=""
-        src="/rectangle-163@2x.png"
+      {/* NFT Image */}
+      <Image
+        className="w-[18.5rem] h-[15.31rem] relattive  object-cover"
+        alt="nft"
+        src={data.url}
       />
       <div className="self-stretch flex flex-col py-[0rem] px-[1.5rem] items-start justify-start gap-[0.88rem]">
         <div className="flex flex-col items-start justify-start gap-[0.5rem]">
+          {/* NFT Name */}
           <div className="relative tracking-[-0.02em] leading-[1.69rem] font-medium inline-block w-[15.5rem]">
-            Cosmic Journey
+            {data.name}
           </div>
           <div className="relative text-[1rem] tracking-[-0.02em] leading-[1.5rem]">
             <span>{`by `}</span>
+            {/* NFT Creator */}
             <button>
-              <span className="font-semibold text-green">Cosmic Labs</span>
+              <span className="font-semibold text-green">{data.by}</span>
             </button>
           </div>
         </div>
@@ -25,16 +45,18 @@ const LiveLaunchesCard: NextPage = () => {
             <div className="text-gray-500 relative tracking-[-0.02em] leading-[1.31rem]">
               Floor
             </div>
+            {/* NFT Floor Value */}
             <div className="relative text-[1rem] tracking-[-0.02em] leading-[1.5rem] font-semibold text-white">
-              10 XRP
+              {data.floor}
             </div>
           </div>
           <div className="flex-1 flex flex-col items-start justify-start gap-[0.25rem]">
             <div className="text-gray-500 relative tracking-[-0.02em] leading-[1.31rem]">
               Whitelist date
             </div>
+            {/* NFT Whitelist Date */}
             <div className="relative text-[1rem] tracking-[-0.02em] leading-[1.5rem] font-semibold text-white">
-              May 5, 2023
+              {data.whitelistDate}
             </div>
           </div>
         </div>
@@ -45,13 +67,15 @@ const LiveLaunchesCard: NextPage = () => {
           <h2 className="relative tracking-[-0.02em] leading-[1.31rem]">
             Items
           </h2>
+          {/* NFT Items Amount */}
           <span className="relative text-[1rem] tracking-[-0.02em] leading-[1.5rem] font-semibold">
-            20,000
+            {data.items}
           </span>
         </div>
         <div className="  self-stretch flex flex-col items-start justify-center text-green">
           <div className="self-stretch flex flex-row items-center justify-between">
             <div className="flex flex-row items-center justify-start gap-[0.5rem]">
+              {/* NFT Discover Button */}
               <button className="relative tracking-[-0.02em] leading-[1.31rem] font-medium">
                 Discover
               </button>
@@ -63,6 +87,7 @@ const LiveLaunchesCard: NextPage = () => {
                 />
               </button>
             </div>
+            {/* NFT Minting Button */}
             <button className="rounded-lg [background:linear-gradient(90deg,_#78ffdf,_#1ebe5e)] flex flex-row py-[0.75rem] px-[1rem] items-center justify-start text-dark-green">
               <h3 className=" text-black relative tracking-[-0.02em] leading-[1.31rem] font-semibold">
                 Minting Now

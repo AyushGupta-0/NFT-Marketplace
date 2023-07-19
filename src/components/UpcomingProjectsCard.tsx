@@ -1,23 +1,47 @@
-import type { NextPage } from "next";
+// Note : Upcoming Projects Card Component
+import Image from "next/image";
+import { FC } from "react";
 
-const UpcomingProjectsCard: NextPage = () => {
+// data props
+
+type dataProps = {
+  url: any;
+  name: string;
+  floor: string;
+  whitelistDate: string;
+  LaunchDays: string;
+  LaunchHours: string;
+  LaunchMin: string;
+  LaunchSec: string;
+  items: string;
+  by: string;
+};
+
+interface UpcomingProjectsCardProps {
+  data: dataProps;
+}
+
+const UpcomingProjectsCard: FC<UpcomingProjectsCardProps> = ({ data }) => {
   return (
     <div>
       <div className="rounded-lg bg-box w-[18.5rem] overflow-hidden shrink-0 flex flex-col items-start justify-start gap-[1rem]">
-        <img
+        {/* NFT Image */}
+        <Image
           className="relative w-[18.5rem] h-[15.31rem] object-cover"
-          alt=""
-          src="/rectangle-163@2x.png"
+          alt="nft"
+          src={data.url}
         />
         <div className="self-stretch flex flex-col py-[0rem] px-[1.5rem] items-start justify-start gap-[0.88rem]">
           <div className="flex flex-col items-start justify-start gap-[0.5rem] text-[1.13rem] text-white">
+            {/* NFT Name */}
             <div className="relative tracking-[-0.02em] leading-[1.69rem] font-medium inline-block w-[15.5rem]">
-              Digital Dreams
+              {data.name}
             </div>
             <div className="relative text-[1rem] tracking-[-0.02em] leading-[1.5rem]">
               <span>{`by `}</span>
+              {/* NFT Creator Name */}
               <button>
-                <span className="font-semibold text-green">Dreamy Cool</span>
+                <span className="font-semibold text-green">{data.by}</span>
               </button>
             </div>
           </div>
@@ -26,16 +50,18 @@ const UpcomingProjectsCard: NextPage = () => {
               <div className=" text-gray-500 relative tracking-[-0.02em] leading-[1.31rem]">
                 Floor
               </div>
+              {/* NFT Floor Value */}
               <div className=" relative text-[1rem] tracking-[-0.02em] leading-[1.5rem] font-semibold text-white">
-                10 XRP
+                {data.floor}
               </div>
             </div>
             <div className="flex-1 flex flex-col items-start justify-start gap-[0.25rem]">
               <div className=" text-gray-500 relative tracking-[-0.02em] leading-[1.31rem]">
                 Whitelist date
               </div>
+              {/* NFT Whitelist Date */}
               <div className="relative text-[1rem] tracking-[-0.02em] leading-[1.5rem] font-semibold text-white">
-                May 7, 2023
+                {data.whitelistDate}
               </div>
             </div>
           </div>
@@ -52,11 +78,12 @@ const UpcomingProjectsCard: NextPage = () => {
                 />
               </button>
             </div>
+            {/* NFT Launching in Section */}
             <div className="flex flex-row items-start justify-start gap-[0.5rem] text-center text-[1rem] text-white">
               <div className="flex flex-col items-center justify-start gap-[0.5rem]">
                 <div className=" bg-gray-700 rounded bg-line overflow-hidden flex flex-col p-[1rem] items-start justify-start">
                   <div className="relative tracking-[-0.02em] leading-[1.5rem] font-semibold inline-block w-[1.5rem]">
-                    02
+                    {data.LaunchDays}
                   </div>
                 </div>
                 <div className=" text-gray-500 relative text-[0.75rem] tracking-[-0.02em] leading-[1.13rem] text-content inline-block w-[3.5rem]">
@@ -66,7 +93,7 @@ const UpcomingProjectsCard: NextPage = () => {
               <div className="flex flex-col items-center justify-start gap-[0.5rem]">
                 <div className=" bg-gray-700 rounded bg-line overflow-hidden flex flex-col p-[1rem] items-start justify-start">
                   <div className=" relative tracking-[-0.02em] leading-[1.5rem] font-semibold inline-block w-[1.5rem]">
-                    16
+                    {data.LaunchHours}
                   </div>
                 </div>
                 <div className=" text-gray-500 relative text-[0.75rem] tracking-[-0.02em] leading-[1.13rem] text-content inline-block w-[3.5rem]">
@@ -76,7 +103,7 @@ const UpcomingProjectsCard: NextPage = () => {
               <div className="flex flex-col items-center justify-start gap-[0.5rem]">
                 <div className="bg-gray-700 rounded bg-line overflow-hidden flex flex-col p-[1rem] items-start justify-start">
                   <div className="relative tracking-[-0.02em] leading-[1.5rem] font-semibold inline-block w-[1.5rem]">
-                    43
+                    {data.LaunchMin}
                   </div>
                 </div>
                 <div className=" text-gray-500 relative text-[0.75rem] tracking-[-0.02em] leading-[1.13rem] text-content inline-block w-[3.5rem]">
@@ -86,7 +113,7 @@ const UpcomingProjectsCard: NextPage = () => {
               <div className="flex flex-col items-center justify-start gap-[0.5rem]">
                 <div className="bg-gray-700 rounded bg-line overflow-hidden flex flex-col p-[1rem] items-start justify-start">
                   <div className="relative tracking-[-0.02em] leading-[1.5rem] font-semibold inline-block w-[1.5rem]">
-                    10
+                    {data.LaunchSec}
                   </div>
                 </div>
                 <div className="text-gray-500 relative text-[0.75rem] tracking-[-0.02em] leading-[1.13rem] text-content inline-block w-[3.5rem]">
@@ -102,8 +129,9 @@ const UpcomingProjectsCard: NextPage = () => {
               <div className="relative tracking-[-0.02em] leading-[1.31rem]">
                 Items
               </div>
+              {/* NFT Items Amount */}
               <div className="relative text-[1rem] tracking-[-0.02em] leading-[1.5rem]">
-                20,000
+                {data.items}
               </div>
             </div>
             <div className="flex flex-row items-center justify-start gap-[0.5rem] text-[1rem] text-green">
