@@ -27,6 +27,8 @@ import {
   LayoutGrid,
   LayoutListIcon,
   LayoutPanelLeft,
+  Unlock,
+  AlertOctagon,
   type Icon as LucideIcon,
   type LucideProps,
 } from "lucide-react";
@@ -66,6 +68,8 @@ export const Icons = {
   layoutGrid: LayoutGrid,
   layoutList: LayoutListIcon,
   layoutPanelLeft: LayoutPanelLeft,
+  unlock: Unlock,
+  alert: AlertOctagon,
   logout: ({ ...props }: LucideProps) => <RiLogoutCircleLine {...props} />,
   discord: ({ ...props }: LucideProps) => <FaDiscord {...props} />,
   tiktok: ({ ...props }: LucideProps) => <FaTiktok {...props} />,
