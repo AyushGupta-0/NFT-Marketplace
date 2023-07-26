@@ -34,6 +34,7 @@ module.exports = {
         primary_Colour: "#1EBE5E",
         content_Grey: "#888A8F",
         green: "#1EBE5E",
+        placeholder: "#575B63",
         box: "#1D1F24",
       },
       backgroundImage: {},
