@@ -5,9 +5,6 @@ import HomeHeroBanner from "@/components/HomeHeroBanner";
 import NftRanksNobelModal from "@/components/NftRanksNobelModal";
 import NftNewsModal from "@/components/NftNewsModal";
 import Slider from "@/components/Slider";
-import FiterSecttion from "@/components/fiter-secttion";
-import ExploreItems from "@/components/explore-items";
-import ExploreSubNavbar from "@/components/explore-sub-navbar";
 
 // icons
 import { FiChevronRight } from "react-icons/fi";
@@ -27,8 +24,6 @@ const ranking = ["1", "2", "3", "4", "5"];
 
 export default function page({}: Props) {
   return (
-    <main className=" pt-12 pb-24 pl-6 md:pl-[4.3rem] bg-background border-none flex flex-col gap-10 md:gap-14 text-white overflow-hidden ">
-      
-    </main>
+    <main className=" pt-12 pb-24 pl-6 md:pl-[4.3rem] bg-background border-none flex flex-col gap-10 md:gap-14 text-white overflow-hidden "></main>
   );
 }
