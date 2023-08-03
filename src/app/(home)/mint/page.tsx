@@ -1,29 +1,29 @@
 "use client";
-import { FC, useState, useRef } from "react";
+import { FC, useState, useRef, ChangeEvent } from "react";
 import Button from "@/components/ui/Button";
 import { Icons } from "@/components/ui/Icons";
 import Image from "next/image";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import Input from "@/components/ui/Input";
 
 interface pageProps {}
 
 const Page: FC<pageProps> = ({}) => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string[]>([]);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const inputRef = useRef<HTMLInputElement>(null);
 
   // handle the image change
-  const handleImageChange = (e: any) => {
-    const file = e.target.files?.[0];
-    console.log(file);
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedImage(reader.result as string); //? get's the url of the image
-      };
-      reader.readAsDataURL(file);
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files) {
+      const filesArray = Array.from(files); //?makes the files into an array
+      const imagesArray = filesArray.map((file) => {
+        return URL.createObjectURL(file); //?creates a url for each file
+      });
+      setSelectedImage(imagesArray);
     }
   };
 
@@ -34,7 +34,7 @@ const Page: FC<pageProps> = ({}) => {
     }
   };
   return (
-    <main className="h-full w-full  md:inline-flex md:flex-col md:items-center ">
+    <main className="h-full w-full  md:inline-flex md:px-60 md:flex-col md:items-center ">
       <div className="px-6 py-8 md:py-12 md:mb-10 flex flex-col gap-5 md:gap-6">
         {/* back button */}
         <div className="flex flex-col gap-3">
@@ -64,31 +64,55 @@ const Page: FC<pageProps> = ({}) => {
             FIle types supported: JPG, PNG, GIF, MP4, WEBM, GLB,GLTF.
           </p>
 
-          <div
-            className="w-full bg-box  md:max-w-[20rem] rounded-lg"
-            onClick={handleClick}
-          >
-            {selectedImage ? (
-              <Image
-                src={selectedImage}
-                alt="Selected"
-                width="0"
-                height="0"
-                quality={80}
-                className="w-full max-h-[18.5rem] object-cover rounded-lg"
-              />
+          <div>
+            {selectedImage.length > 0 ? (
+              <div className="flex gap-4 md:gap-6 w-full md:w-[50vw] overflow-x-scroll scrollbar-thin scrollbar-track-content_Grey  scrollbar-thumb-green ">
+                {selectedImage.map((image, i) => {
+                  return (
+                    <div
+                      key={i}
+                      className="w-full max-w-[20rem] shrink-0 relative py-1"
+                    >
+                      <Image
+                        src={image}
+                        alt="Selected"
+                        width="0"
+                        height="0"
+                        quality={80}
+                        className=" w-full max-h-[18.5rem] object-cover rounded-lg"
+                      />
+                      <button
+                        className="absolute top-2 right-1 bg-white opacity-25 rounded-full p-1 hover:scale-110 hover:opacity-100 transition-all"
+                        onClick={() =>
+                          setSelectedImage(
+                            selectedImage.filter((item) => item !== image)
+                          )
+                        }
+                      >
+                        <Icons.X className="h-6 w-6 text-black " />
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
             ) : (
-              <div className="text-content_Grey px-6 py-[4.5rem] md:py-24 flex flex-col gap-4 md:gap-6 items-center">
-                <Icons.nft className="h-10 w-10 md:h-14 md:w-14" />
-                <h2 className="text-placeholder  text-sm md:text-base">
-                  Drag file or click to upload
-                </h2>
+              <div
+                className="w-full bg-box  md:max-w-[20rem] rounded-lg"
+                onClick={handleClick}
+              >
+                <div className="text-content_Grey px-6 py-[4.5rem] md:py-24 flex flex-col gap-4 md:gap-6 items-center">
+                  <Icons.nft className="h-10 w-10 md:h-14 md:w-14" />
+                  <h2 className="text-placeholder  text-sm md:text-base">
+                    Drag file or click to upload
+                  </h2>
+                </div>
               </div>
             )}
 
             <input
               type="file"
-              // accept="image/x-png,image/gif,image/jpeg"
+              accept="image/x-png,image/gif,image/jpeg"
+              multiple
               ref={inputRef}
               onChange={handleImageChange}
               className="hidden"
@@ -100,11 +124,7 @@ const Page: FC<pageProps> = ({}) => {
           <h2 className="text-white text-base md:text-xl font-medium">
             Name <span className="text-red-600">*</span>
           </h2>
-          <input
-            type="text"
-            placeholder="Item name"
-            className="bg-box px-4 py-[0.63rem] md:py-3 md:px-6  border-none outline-none rounded-lg text-white"
-          />
+          <Input placeholder="Item name" />
         </div>
         {/* description */}
         <div className="flex flex-col gap-3">
@@ -132,11 +152,7 @@ const Page: FC<pageProps> = ({}) => {
           <h2 className="text-white text-base md:text-xl font-medium">
             External Link
           </h2>
-          <input
-            type="text"
-            placeholder="https://yournftsite.io/items/nft-1"
-            className="bg-box px-4 py-[0.63rem] md:py-3 md:px-6  border-none outline-none rounded-lg text-white"
-          />
+          <Input placeholder="https://yournftsite.io/items/nft-1" />
         </div>
         {/* collection */}
         <div className="flex flex-col gap-3">
@@ -156,12 +172,12 @@ const Page: FC<pageProps> = ({}) => {
           <h2 className="text-white text-base md:text-xl font-medium">
             Royalties
           </h2>
-          <input
+          <Input
             type="number"
             placeholder="Ex: 10"
             min="0"
             max="100"
-            className="bg-box px-4 py-[0.63rem] md:py-3 md:px-6  max-w-[10rem]  border-none outline-none rounded-lg text-white"
+            className="max-w-[10rem]  "
           />
         </div>
         {/* launching time */}
@@ -208,14 +224,11 @@ const Page: FC<pageProps> = ({}) => {
           <h2 className="text-white text-base md:text-xl font-medium">
             Supply
           </h2>
-          <input
-            type="text"
-            className="bg-box px-4 py-[0.63rem] md:py-3 md:px-6 border-none outline-none rounded-lg text-white"
-          />
+          <Input />
         </div>
         {/* buttons */}
         <div className="gap-6 flex w-full md:justify-end flex-1">
-          <Button variant={"darkgreen"} className="w-full md:w-fit">
+          <Button variant={"darkgreen"} className="w-full md:w-fit ">
             Preview
           </Button>
           <Button className="w-full md:w-fit">Minting Now</Button>
