@@ -3,6 +3,7 @@ import "./globals.css";
 import Providers from "@/components/Providers";
 import ProvidersToast from "@/components/layout/Providers";
 import { Inter } from "next/font/google";
+import { ReduxProvider } from "@/lib/redux/ReduxProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -20,8 +21,10 @@ export default function RootLayout({
       <Providers>
         <body className={inter.className}>
           <ProvidersToast>
-            {children}
-            <Chat />
+            <ReduxProvider>
+              {children}
+              <Chat />
+            </ReduxProvider>
           </ProvidersToast>
         </body>
       </Providers>
