@@ -21,12 +21,12 @@ const pageLinks = [
   { name: "Launchpad", link: "/" },
 ];
 const imageStyle = {
-  outerWidth: '5px',
-  outerHeight: '5px',
-  borderRadius: '50%',
+  outerWidth: "5px",
+  outerHeight: "5px",
+  borderRadius: "50%",
 
-  border: '1px solid #fff',
-}
+  border: "1px solid #fff",
+};
 
 export default function NavBarSigned({}: Props) {
   return (
@@ -58,8 +58,12 @@ export default function NavBarSigned({}: Props) {
 
         <div className="hidden md:flex gap-4">
           <Button variant={"gradiend"}>1222 XRP</Button>
-          <Image src={profile} alt="logo"  className=" w-10 "style={imageStyle}/>
-          
+          <Image
+            src={profile}
+            alt="logo"
+            className=" w-10 "
+            style={imageStyle}
+          />
         </div>
         {/* cart */}
         <Icons.shoppingCart className=" w-6 h-6 overflow-hidden shrink-0" />
