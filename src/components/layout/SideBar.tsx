@@ -31,12 +31,12 @@ const sideBarIcons = [
   {
     name: "Favorites",
     icons: <CgHeart className="text-white h-7 w-7" />,
-    link: "/",
+    link: "/favorites",
   },
   {
     name: "Purchase history",
     icons: <FaMoneyBill className="text-white h-7 w-7" />,
-    link: "/",
+    link: "/purchase-history",
   },
   {
     name: "Notification",
