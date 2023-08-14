@@ -41,6 +41,7 @@ import {
   Unlock,
   AlertOctagon,
   Box,
+  PenLine,
   type Icon as LucideIcon,
   type LucideProps,
 } from "lucide-react";
@@ -94,6 +95,7 @@ export const Icons = {
   unlock: Unlock,
   alert: AlertOctagon,
   box: Box,
+  edit: PenLine,
   logout: ({ ...props }: LucideProps) => <RiLogoutCircleLine {...props} />,
   discord: ({ ...props }: LucideProps) => <FaDiscord {...props} />,
   tiktok: ({ ...props }: LucideProps) => <FaTiktok {...props} />,

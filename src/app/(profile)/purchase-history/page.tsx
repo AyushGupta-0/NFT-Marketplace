@@ -58,10 +58,6 @@ const PurchaseHistory = [
 export default function page({}: Props) {
   return (
     <div>
-      {/* Sidebar Dashboard */}
-
-      <SideBar />
-
       {/* Main Content */}
 
       <div className="relative md:absolute md:top-[8rem] left-4 md:left-[18.25rem] w-[67.5rem] flex flex-col items-start justify-start gap-6">
@@ -88,42 +84,42 @@ export default function page({}: Props) {
         </div>
         <div className=" w-[30%] md:w-full md:scrollbar-hide overflow-x-scroll scrollbar-thin scrollbar-track-content_Grey  scrollbar-thumb-green ">
           <div>
-          {/* Table Headings */}
-          <div className="self-stretch flex flex-col items-start justify-start gap-4 text-left text-[1rem] text-white  font-inter ">
-            <div className="self-stretch flex flex-row items-start justify-start text-gray-500 gap-4 text-content">
-              <div className="relative  leading-[1.5rem] inline-block w-[12.75rem] shrink-0">
-                Item
+            {/* Table Headings */}
+            <div className="self-stretch flex flex-col items-start justify-start gap-4 text-left text-[1rem] text-white  font-inter ">
+              <div className="self-stretch flex flex-row items-start justify-start text-gray-500 gap-4 text-content">
+                <div className="relative  leading-[1.5rem] inline-block w-[12.75rem] shrink-0">
+                  Item
+                </div>
+                <div className="relative leading-[1.5rem] inline-block w-[9.75rem] shrink-0">
+                  Price
+                </div>
+                <div className="relative leading-[1.5rem] inline-block w-[9rem] shrink-0">
+                  Rarity
+                </div>
+                <div className="relative  leading-[1.5rem] inline-block w-[5.44rem] shrink-0">
+                  Quantity
+                </div>
+                <div className="relative leading-[1.5rem] inline-block w-[8.06rem] shrink-0">
+                  From
+                </div>
+                <div className="relative  leading-[1.5rem] inline-block w-[8.38rem] shrink-0">
+                  To
+                </div>
+                <div className="flex-1 relative  leading-[1.5rem]">Time</div>
               </div>
-              <div className="relative leading-[1.5rem] inline-block w-[9.75rem] shrink-0">
-                Price
-              </div>
-              <div className="relative leading-[1.5rem] inline-block w-[9rem] shrink-0">
-                Rarity
-              </div>
-              <div className="relative  leading-[1.5rem] inline-block w-[5.44rem] shrink-0">
-                Quantity
-              </div>
-              <div className="relative leading-[1.5rem] inline-block w-[8.06rem] shrink-0">
-                From
-              </div>
-              <div className="relative  leading-[1.5rem] inline-block w-[8.38rem] shrink-0">
-                To
-              </div>
-              <div className="flex-1 relative  leading-[1.5rem]">Time</div>
-            </div>
 
-            {/* Purchase History Card */}
+              {/* Purchase History Card */}
 
-            <div className="self-stretch flex flex-col items-start justify-start">
-              {PurchaseHistory.map((item, i) => {
-                return (
-                  <div key={i}>
-                    <PurchaseHistoryCard data={item} />
-                  </div>
-                );
-              })}
+              <div className="self-stretch flex flex-col items-start justify-start">
+                {PurchaseHistory.map((item, i) => {
+                  return (
+                    <div key={i}>
+                      <PurchaseHistoryCard data={item} />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </div>
