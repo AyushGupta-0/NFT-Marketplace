@@ -61,12 +61,6 @@ const Favorites = [
 export default function page({}: Props) {
   return (
     <div>
-      {/* Sidebar Dashboard */}
-
-      <SideBar />
-
-      {/* Main Content */}
-
       <div className="relative md:absolute md:top-[8rem] left-4 md:left-[18.25rem] w-[67.5rem] flex flex-col items-start justify-start gap-6">
         <div className="self-stretch flex flex-col md:flex-row md:items-center justify-between text-left text-[2rem] font-inter">
           {/* Heading */}
