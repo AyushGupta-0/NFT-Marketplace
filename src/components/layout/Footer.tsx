@@ -47,7 +47,7 @@ const marketPlaceLinks = [
 const accountLinks = [
   { name: "My Profile", link: "/" },
   { name: "Collection", link: "/" },
-  { name: "Favorites", link: "/" },
+  { name: "Favorites", link: "/favorites" },
   { name: "Watchlist", link: "/" },
   { name: "Create", link: "/" },
   { name: "Settings", link: "/" },
@@ -58,7 +58,7 @@ const pagesLinks = [
   { name: "Blog", link: "/" },
   { name: "Docs", link: "/" },
   { name: "Newsletter", link: "/" },
-  { name: "FAQs", link: "/" },
+  { name: "FAQs", link: "/faq" },
   { name: "Support", link: "/" },
 ];
 export default function Footer({}: Props) {
