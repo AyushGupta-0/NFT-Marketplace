@@ -41,7 +41,7 @@ const sideBarIcons = [
   {
     name: "Notification",
     icons: <CgBell className="text-white h-7 w-7" />,
-    link: "/",
+    link: "/notification",
   },
   {
     name: "Profile",
