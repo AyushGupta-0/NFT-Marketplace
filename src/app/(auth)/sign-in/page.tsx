@@ -21,30 +21,15 @@ const Page: FC<pageProps> = ({}) => {
   const [qrcode, setQrcode] = useState("");
   const router = useRouter();
 
+  const AuthLogin = (provider: string) => {
+    window.open(
+      `${process.env.NEXT_PUBLIC_SERVERURL}/v1/auth/${provider}`,
+      "_self"
+    );
+  };
+
   const handleClick = () => {
-    // if (isDesktop) {
-    //   fetch(
-    //     `${process.env.NEXT_PUBLIC_SERVERURL}:${process.env.NEXT_PUBLIC_SERVERPORT}/api/auth/loginAccountWithXumm`
-    //   )
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       socket.on("accountLoggedIn", (data) => {
-    //         console.log(data);
-    //       });
-    //       setQrcode(data.url);
-    //       setConnectWallet(true);
-    //     });
-    // } else if (isMobile) {
-    //   fetch(
-    //     `${process.env.NEXT_PUBLIC_SERVERURL}:${process.env.NEXT_PUBLIC_SERVERPORT}/api/auth/loginAccountWithXumm`
-    //   )
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       router.push(data.url);
-    //     });
-    // }
     setConnectWallet(true);
-    toast.success("Coming Soon");
   };
   return (
     <main className="w-full h-full  flex flex-col justify-center items-center gap-4 px-6 mt-10 md:mt-0 ">
@@ -58,6 +43,7 @@ const Page: FC<pageProps> = ({}) => {
           <Button
             variant={"transparent"}
             className="bg-[#1DA1F2] gap-2 text-white"
+            onClick={() => AuthLogin("twitter")}
           >
             <Icons.twitter className="h-6 w-6" />
             Continue with Twitter
@@ -65,6 +51,7 @@ const Page: FC<pageProps> = ({}) => {
           <Button
             variant={"transparent"}
             className="bg-[#5865F2]  gap-2 text-white"
+            onClick={() => AuthLogin("discord")}
           >
             <Icons.discord className="h-6 w-6" />
             Continue with Discord
@@ -73,6 +60,7 @@ const Page: FC<pageProps> = ({}) => {
             // isLoading={true}
             variant={"transparent"}
             className="bg-box text-white gap-2"
+            onClick={() => AuthLogin("google")}
           >
             <Icons.google className="h-6 w-6" />
             Continue with Google
@@ -110,7 +98,11 @@ const Page: FC<pageProps> = ({}) => {
 
       {/* popup modal for qrcode */}
       {connectWallet && (
-        <QrPopUpModal onClose={() => setConnectWallet(false)} />
+        <QrPopUpModal
+          onClose={() => setConnectWallet(false)}
+          endpoint={"/v1/auth/xumm"}
+          method={"GET"}
+        />
       )}
     </main>
   );

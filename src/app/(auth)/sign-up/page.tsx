@@ -3,10 +3,21 @@ import { FC, useState } from "react";
 import Button from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
 import { Icons } from "@/components/ui/Icons";
+import Link from "next/link";
+import QrPopUpModal from "@/components/QrPopUpModal";
 interface pageProps {}
 
 const Page: FC<pageProps> = ({}) => {
+  const [connectWallet, setConnectWallet] = useState<boolean>(false);
   const router = useRouter();
+
+  const AuthLogin = (provider: string) => {
+    window.open(
+      `${process.env.NEXT_PUBLIC_SERVERURL}/v1/auth/${provider}`,
+      "_self"
+    );
+  };
+
   return (
     <main className="w-full h-full  flex flex-col justify-center md:items-center gap-4 px-6 mt-10 md:mt-0 ">
       <div className="flex flex-col gap-4 w-full max-w-[25.5rem] ">
@@ -19,6 +30,7 @@ const Page: FC<pageProps> = ({}) => {
           <Button
             variant={"transparent"}
             className="bg-[#1DA1F2] gap-2 text-white"
+            onClick={() => AuthLogin("twitter")}
           >
             <Icons.twitter className="h-6 w-6" />
             Continue with Twitter
@@ -26,6 +38,7 @@ const Page: FC<pageProps> = ({}) => {
           <Button
             variant={"transparent"}
             className="bg-[#5865F2]  gap-2 text-white"
+            onClick={() => AuthLogin("discord")}
           >
             <Icons.discord className="h-6 w-6" />
             Continue with Discord
@@ -34,6 +47,7 @@ const Page: FC<pageProps> = ({}) => {
             // isLoading={true}
             variant={"transparent"}
             className="bg-box text-white gap-2"
+            onClick={() => AuthLogin("google")}
           >
             <Icons.google className="h-6 w-6" />
             Continue with Google
@@ -49,7 +63,12 @@ const Page: FC<pageProps> = ({}) => {
 
         {/* anonymous user*/}
         <div className=" flex flex-col gap-5">
-          <Button className=" w-full">Continue with Xumm</Button>
+          <Button
+            className=" w-full"
+            onClick={() => setConnectWallet((prev) => !prev)}
+          >
+            Continue with Xumm
+          </Button>
 
           <h1 className="text-content_Grey">
             Already have an account?{" "}
@@ -62,6 +81,13 @@ const Page: FC<pageProps> = ({}) => {
           </h1>
         </div>
       </div>
+      {connectWallet && (
+        <QrPopUpModal
+          onClose={() => setConnectWallet(false)}
+          endpoint={"/v1/auth/xumm"}
+          method={"GET"}
+        />
+      )}
     </main>
   );
 };

@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
 
 // components
 import HomeHeroBanner from "@/components/HomeHeroBanner";
@@ -9,6 +10,8 @@ import Slider from "@/components/Slider";
 // icons
 import { FiChevronRight } from "react-icons/fi";
 import NftCollectionModal from "@/components/NftCollectionModal";
+import { useAppSelector } from "@/lib/redux/store";
+import { makeApiCall } from "@/helpers/apiCall";
 
 type Props = {};
 const collectionNft = [
@@ -22,7 +25,20 @@ const trendingTime = ["1h", "6h", "12h", "1d"];
 
 const ranking = ["1", "2", "3", "4", "5"];
 
-export default function page({}: Props) {
+export default function Page({}: Props) {
+  const [allNfts, setAllNfts] = React.useState<any[]>([]);
+  const { entities } = useAppSelector((state) => state.userSlice);
+
+  console.log(entities);
+  useEffect(() => {
+    const fetcPosts = () => {
+      makeApiCall("/v1/nfts")
+        .then((data) => setAllNfts(data))
+        .catch((err) => console.log(err));
+    };
+    fetcPosts();
+  }, []);
+
   return (
     <main className=" pt-12 pb-24 pl-6 md:pl-[4.3rem] bg-background border-none flex flex-col gap-10 md:gap-14 text-white overflow-hidden ">
       {/*  Carousel / Slider */}
@@ -36,7 +52,13 @@ export default function page({}: Props) {
           Collections{" "}
         </h1>
         <div className="w-full overflow-x-scroll scrollbar-hide h-full flex gap-4">
-          <NftCollectionModal data="" />
+          {allNfts.map((items, i) => {
+            return (
+              <div key={i}>
+                <NftCollectionModal data={items} />
+              </div>
+            );
+          })}
         </div>
       </section>
 
@@ -87,11 +109,11 @@ export default function page({}: Props) {
           <h1 className=" gardient-color-green ">Notable Collections</h1>
         </div>
         <div className="flex gap-4 md:gap-10 overflow-x-scroll scrollbar-hide h-full">
+          {/* <NftCollectionModal data="" />
           <NftCollectionModal data="" />
           <NftCollectionModal data="" />
           <NftCollectionModal data="" />
-          <NftCollectionModal data="" />
-          <NftCollectionModal data="" />
+          <NftCollectionModal data="" /> */}
         </div>
       </section>
 

@@ -4,18 +4,28 @@ import Image from "next/image";
 import demoNft from "@/assets/nft-demo-1.png";
 
 interface NftCollectionModalProps {
-  data: string;
+  data: any;
 }
 
-const NftCollectionModal: FC<NftCollectionModalProps> = async ({ data }) => {
+const NftCollectionModal: FC<NftCollectionModalProps> = ({ data }) => {
+  const imageSrc = `https://phoenixrp-image.infura-ipfs.io/ipfs/${data?.tokenURI?.slice(
+    7
+  )}`;
   console.log(data);
   return (
     <div className="h-[11.6rem] min-w-[11.5rem] rounded-lg relative text-white overflow-hidden">
-      <Image src={demoNft} alt="nft" className="object-cover h-full w-full" />
+      <Image
+        src={imageSrc}
+        alt="nft"
+        priority={true}
+        width={400}
+        height={400}
+        className="object-cover h-full w-full"
+      />
 
       {/*  info */}
       <div className="absolute w-full px-3 gap-1 bottom-0">
-        <h1 className="text-base font-medium ">Immersive Visions</h1>
+        <h1 className="text-base font-medium ">{data.name}</h1>
         <div className="flex justify-between text-xs">
           <div>
             <h2 className="text-content_Grey">Floor</h2>

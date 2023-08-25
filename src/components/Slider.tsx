@@ -3,6 +3,7 @@ import { FC } from "react";
 
 import demoNft from "@/assets/banner-demo.png";
 import Button from "./ui/Button";
+import { useAppSelector } from "@/lib/redux/store";
 interface SliderProps {
   data: string;
 }
