@@ -1,6 +1,5 @@
 import Chat from "@/components/chatboat/Chat";
 import "./globals.css";
-import Providers from "@/components/Providers";
 import ProvidersToast from "@/components/layout/Providers";
 import { Inter } from "next/font/google";
 import { ReduxProvider } from "@/lib/redux/ReduxProvider";
@@ -18,16 +17,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Providers>
-        <body className={inter.className}>
-          <ProvidersToast>
-            <ReduxProvider>
-              {children}
-              <Chat />
-            </ReduxProvider>
-          </ProvidersToast>
-        </body>
-      </Providers>
+      <body className={inter.className}>
+        <ProvidersToast>
+          <ReduxProvider>
+            {children}
+            {/* <Chat /> */}
+          </ReduxProvider>
+        </ProvidersToast>
+      </body>
     </html>
   );
 }

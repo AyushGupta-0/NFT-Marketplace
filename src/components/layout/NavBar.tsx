@@ -12,6 +12,8 @@ import logo from "@/assets/xrp-boys.svg";
 import { Icons } from "../ui/Icons";
 
 import heroBg from "@/assets/hero-bg.png";
+import { useAppSelector } from "@/lib/redux/store";
+
 type Props = {};
 
 const pageLinks = [

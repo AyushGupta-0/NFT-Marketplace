@@ -1,18 +1,68 @@
-import { FC } from "react";
+"use client";
+import { FC, useEffect, useState } from "react";
 import { QRCode } from "react-qrcode-logo";
-
+import socket from "@/lib/socket";
 // images
 import xummLogo from "@/assets/xumm-logo.png";
 import playStore from "@/assets/play-store.png";
 import appleStore from "@/assets/apple-store.png";
 import Image from "next/image";
 import { Icons } from "./ui/Icons";
+import { isDesktop, isMobile } from "react-device-detect";
+import { redirect, useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
+import { makeApiCall } from "@/helpers/apiCall";
 
 interface QrPopUpModal {
+  endpoint: string;
+  data?: any; //! need to fix this before production
+  method: string;
   onClose: () => void;
 }
 
-const QrPopUpModal: FC<QrPopUpModal> = ({ onClose }) => {
+const QrPopUpModal: FC<QrPopUpModal> = ({
+  onClose,
+  endpoint,
+  data,
+  method,
+}) => {
+  const [qrcode, setQrcode] = useState("");
+  const router = useRouter();
+  const [showBarCode, setShowBarCode] = useState<boolean>(false);
+  const redirectUser = () => {
+    // router. = "/home";
+  };
+  useEffect(() => {
+    const connectWallet = () => {
+      try {
+        if (isDesktop) {
+          makeApiCall(endpoint, method, data).then((data) => {
+            socket.on("accountCreated", (data) => {
+              if (data.status === "failed") {
+                toast.error(data.message);
+              } else if (data.status == "success") {
+                toast.success("Wallet connected successfully");
+                setTimeout(() => {
+                  router.push("/home");
+                }, 0);
+              }
+            });
+            setQrcode(data.url);
+            setShowBarCode(true);
+          });
+        } else if (isMobile) {
+          makeApiCall(endpoint, method, data).then((data) => {
+            router.push(data.url);
+          });
+        }
+      } catch (error) {
+        console.error("Error connecting the wallet:", error);
+      }
+    };
+    connectWallet();
+  }, []);
+
+  console.log(qrcode);
   return (
     <main className="fixed inset-0 bg-dark bg-opacity-50 flex items-center justify-center">
       <div className="bg-gray-900 rounded-lg shadow-lg max-w-[19.5rem] md:max-w-[25.5rem] w-full">
@@ -36,20 +86,23 @@ const QrPopUpModal: FC<QrPopUpModal> = ({ onClose }) => {
             />
           </section>
           {/* middle section */}
-          <section className="">
-            <QRCode
-              // value={qrcode}
-              quietZone={10}
-              size={340}
-              fgColor="blue"
-              eyeColor={["green", "green", "green"]}
-              qrStyle="dots"
-              eyeRadius={[
-                [30, 30, 0, 30],
-                [30, 30, 30, 0],
-                [30, 0, 30, 30],
-              ]}
-            />
+          <section className="w-full">
+            {showBarCode ? (
+              <div>
+                <div className="hidden md:flex">
+                  <QRCode value={qrcode} quietZone={10} size={340} />
+                </div>
+                <div className="flex md:hidden">
+                  <div className="flex items-center justify-center w-full min-h-[calc(100vh-12rem)] md:min-h-screen   ">
+                    <Icons.loader className="animate-spin h-20 w-20  text-white" />
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-center justify-center w-full min-h-[calc(100vh-12rem)] md:min-h-screen   ">
+                <Icons.loader className="animate-spin h-20 w-20  text-white" />
+              </div>
+            )}
           </section>
           {/* bottom section */}
           <section className=" flex flex-col items-center gap-3">

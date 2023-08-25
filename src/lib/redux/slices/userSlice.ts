@@ -1,34 +1,37 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-type InitialState = {
-  value: UserType;
-};
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-type UserType = {
-  name: string;
-  email: string;
-  photoUrl: string;
-  uid: string;
+type InitialStateType = {
+  entities: object;
 };
 
 const initialState = {
-  value: {
-    name: "",
-    email: "",
-    photoUrl: "",
-    uid: "",
-  } as UserType,
-} as InitialState;
+  entities: {},
+} as InitialStateType;
+
+export const getUserData = createAsyncThunk(
+  "user/fetchUser",
+  async (ThunkAPI) => {
+    try {
+      const res = await fetch("https://api.phoenixrp.io/v1/auth/profile", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      }).then((res) => res.json());
+      return res;
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      throw error;
+    }
+  }
+);
 
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    logIn: (state, action: PayloadAction<UserType>) => {
-      const { name, email, photoUrl, uid } = action.payload;
-    },
-    logOut: (state) => {},
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getUserData.fulfilled, (state, action) => {
+      state.entities = { ...state.entities, ...action.payload };
+    });
   },
 });
 
-export const { logIn, logOut } = userSlice.actions;
 export default userSlice.reducer;
