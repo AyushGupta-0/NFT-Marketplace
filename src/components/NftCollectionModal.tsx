@@ -11,7 +11,7 @@ const NftCollectionModal: FC<NftCollectionModalProps> = ({ data }) => {
   const imageSrc = `https://phoenixrp-image.infura-ipfs.io/ipfs/${data?.tokenURI?.slice(
     7
   )}`;
-  console.log(data);
+
   return (
     <div className="h-[11.6rem] min-w-[11.5rem] rounded-lg relative text-white overflow-hidden">
       <Image

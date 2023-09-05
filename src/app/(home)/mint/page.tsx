@@ -7,13 +7,28 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import Input from "@/components/ui/Input";
+import { makeApiCall } from "@/helpers/apiCall";
+import QrPopUpModal from "@/components/QrPopUpModal";
 
 interface pageProps {}
 
+type nftData = {};
+
 const Page: FC<pageProps> = ({}) => {
   const [selectedImage, setSelectedImage] = useState<string[]>([]);
+  const [showQRCode, setShowQRCode] = useState<boolean>(false);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const inputRef = useRef<HTMLInputElement>(null);
+  const [image, setImage] = useState<File>();
+  const [formData, setFormData] = useState<FormData>();
+  const [nftData, setNftData] = useState({
+    name: "",
+    description: "",
+  });
+
+  const handleChange = (e: any) => {
+    setNftData({ ...nftData, [e.target.name]: e.target.value });
+  };
 
   // handle the image change
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -24,6 +39,7 @@ const Page: FC<pageProps> = ({}) => {
         return URL.createObjectURL(file); //?creates a url for each file
       });
       setSelectedImage(imagesArray);
+      setImage(files[0]);
     }
   };
 
@@ -33,6 +49,16 @@ const Page: FC<pageProps> = ({}) => {
       inputRef.current.click();
     }
   };
+
+  const handleSubmit = () => {
+    const formData = new FormData();
+    formData.append("nftFile", image!);
+    formData.append("name", nftData.name);
+    formData.append("description", nftData.description);
+    setShowQRCode((prev) => !prev);
+    setFormData(formData);
+  };
+
   return (
     <main className="h-full w-full  md:inline-flex md:px-60 md:flex-col md:items-center ">
       <div className="px-6 py-8 md:py-12 md:mb-10 flex flex-col gap-5 md:gap-6">
@@ -124,7 +150,7 @@ const Page: FC<pageProps> = ({}) => {
           <h2 className="text-white text-base md:text-xl font-medium">
             Name <span className="text-red-600">*</span>
           </h2>
-          <Input placeholder="Item name" />
+          <Input placeholder="Item name" onChange={handleChange} name="name" />
         </div>
         {/* description */}
         <div className="flex flex-col gap-3">
@@ -144,6 +170,8 @@ const Page: FC<pageProps> = ({}) => {
 
           <textarea
             placeholder="Item description"
+            onChange={handleChange}
+            name="description"
             className="bg-box px-4 py-[0.63rem] md:py-3 md:px-6   border-none outline-none rounded-lg w-full h-36 resize-none text-white"
           />
         </div>
@@ -231,9 +259,21 @@ const Page: FC<pageProps> = ({}) => {
           <Button variant={"darkgreen"} className="w-full md:w-fit ">
             Preview
           </Button>
-          <Button className="w-full md:w-fit">Minting Now</Button>
+          <Button className="w-full md:w-fit" onClick={handleSubmit}>
+            Minting Now
+          </Button>
         </div>
       </div>
+      {/* qr code */}
+      {showQRCode && (
+        <QrPopUpModal
+          endpoint="/v1/nfts/mint"
+          method="POST"
+          data={formData}
+          onClose={() => setShowQRCode((prev) => !prev)}
+          socketChannel="nftMinted"
+        />
+      )}
     </main>
   );
 };

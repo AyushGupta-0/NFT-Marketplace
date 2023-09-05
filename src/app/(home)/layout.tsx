@@ -1,7 +1,6 @@
 "use client";
 import Footer from "@/components/layout/Footer";
 import NavBar from "@/components/layout/NavBar";
-import { makeApiCall } from "@/helpers/apiCall";
 import { getUserData } from "@/lib/redux/slices/userSlice";
 import { useRef } from "react";
 

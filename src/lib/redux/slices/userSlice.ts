@@ -1,7 +1,26 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+type UserType = {
+  createdAt: number;
+  defaultWallet: string;
+  email: string;
+  id: string;
+  name: string;
+  profileId: string;
+  profilePicture: string;
+  provider: string;
+  token: string;
+  updatedAt: number;
+  username: string;
+  xummToken: string;
+  balance: string;
+};
+
 type InitialStateType = {
-  entities: object;
+  entities: {
+    data: UserType;
+    status: string;
+  };
 };
 
 const initialState = {

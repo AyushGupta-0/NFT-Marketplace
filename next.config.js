@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["phoenixrp-image.infura-ipfs.io"],
+    domains: ["phoenixrp-image.infura-ipfs.io", "lh3.googleusercontent.com"],
   },
   async rewrites() {
     return [

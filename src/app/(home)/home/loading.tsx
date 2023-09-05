@@ -3,7 +3,7 @@ import { FC } from "react";
 interface loadingProps {}
 
 const loading: FC<loadingProps> = ({}) => {
-  return <div>loading</div>;
+  return <div className="text-white">loading</div>;
 };
 
 export default loading;

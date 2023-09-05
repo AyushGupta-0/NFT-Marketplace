@@ -24,6 +24,8 @@ const pageLinks = [
 
 export default function NavBar({}: Props) {
   const asPath = usePathname();
+  const userData = useAppSelector((state) => state.userSlice.entities?.data);
+  console.log(userData);
   return (
     <div className="relative w-full">
       {asPath === "/home" && (
@@ -57,15 +59,39 @@ export default function NavBar({}: Props) {
             <Icons.search className=" h-6 w-6 shrink-0  md:absolute right-0 top-1/4  z-50  md:mx-2 text-green-500 " />
           </div>
 
-          <div className="hidden md:flex gap-4">
-            <Link href="/sign-up">
-              <Button variant={"gradiend"}>Sign Up</Button>
-            </Link>
-            <Link href="/sign-in">
-              <Button variant={"transparent"} className=" py-3 px-0 text-sm ">
-                Sign In
-              </Button>
-            </Link>
+          <div className="">
+            {userData ? (
+              <div className="hidden md:flex gap-4 items-center">
+                <Button variant={"gradiend"}>
+                  <Icons.wallet />
+                  <h1>{userData.balance}</h1>
+                </Button>
+                <Link href="/profile">
+                  <div className=" rounded-full relative w-10 h-10 ">
+                    <Image
+                      src={userData?.profilePicture}
+                      fill
+                      className="rounded-full"
+                      alt="profilePicture"
+                    />
+                  </div>
+                </Link>
+              </div>
+            ) : (
+              <div className="hidden md:flex gap-4">
+                <Link href="/sign-up">
+                  <Button variant={"gradiend"}>Sign Up</Button>
+                </Link>
+                <Link href="/sign-in">
+                  <Button
+                    variant={"transparent"}
+                    className=" py-3 px-0 text-sm "
+                  >
+                    Sign In
+                  </Button>
+                </Link>
+              </div>
+            )}
           </div>
           {/* cart */}
           <Icons.shoppingCart className=" w-6 h-6 overflow-hidden shrink-0" />

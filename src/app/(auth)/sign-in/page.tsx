@@ -101,7 +101,8 @@ const Page: FC<pageProps> = ({}) => {
         <QrPopUpModal
           onClose={() => setConnectWallet(false)}
           endpoint={"/v1/auth/xumm"}
-          method={"GET"}
+          method={"POST"}
+          socketChannel="accountCreated"
         />
       )}
     </main>
