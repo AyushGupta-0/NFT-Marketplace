@@ -20,7 +20,7 @@ const Page: FC<pageProps> = ({ searchParams }) => {
     const { token, next } = searchParams;
     if (token) {
       localStorage.setItem("token", token as string);
-      if (next == "bsvsa") {
+      if (next == "home") {
         toast.success("Login success");
         redirect(`/${next}`);
       } else {
@@ -80,7 +80,8 @@ const Page: FC<pageProps> = ({ searchParams }) => {
           onClose={() => setConnectWallet(false)}
           endpoint={"/v1/auth/oauth"}
           method={"PUT"}
-          data={{ username }}
+          data={{ username }} //? apicall send json format
+          socketChannel={"accountCreated"}
         />
       )}
     </div>

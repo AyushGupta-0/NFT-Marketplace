@@ -11,13 +11,15 @@ import { Icons } from "./ui/Icons";
 import { isDesktop, isMobile } from "react-device-detect";
 import { redirect, useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import { makeApiCall } from "@/helpers/apiCall";
+import { makeApiCall, nftMintApiCall } from "@/helpers/apiCall";
+import { v4 } from "uuid";
 
 interface QrPopUpModal {
   endpoint: string;
   data?: any; //! need to fix this before production
   method: string;
   onClose: () => void;
+  socketChannel: "accountCreated" | "nftMinted";
 }
 
 const QrPopUpModal: FC<QrPopUpModal> = ({
@@ -25,34 +27,53 @@ const QrPopUpModal: FC<QrPopUpModal> = ({
   endpoint,
   data,
   method,
+  socketChannel,
 }) => {
   const [qrcode, setQrcode] = useState("");
   const router = useRouter();
   const [showBarCode, setShowBarCode] = useState<boolean>(false);
-  const redirectUser = () => {
-    // router. = "/home";
-  };
+  console.log(endpoint, data, method, socketChannel);
   useEffect(() => {
     const connectWallet = () => {
       try {
-        if (isDesktop) {
-          makeApiCall(endpoint, method, data).then((data) => {
-            socket.on("accountCreated", (data) => {
-              if (data.status === "failed") {
-                toast.error(data.message);
-              } else if (data.status == "success") {
-                toast.success("Wallet connected successfully");
-                setTimeout(() => {
-                  router.push("/home");
-                }, 0);
-              }
-            });
-            setQrcode(data.url);
-            setShowBarCode(true);
+        const id = v4();
+        if (socketChannel == "nftMinted") {
+          nftMintApiCall(endpoint, data, id).then((data) => {
+            if (isDesktop) {
+              socket.on(`${socketChannel}-${id}`, (data) => {
+                if (data.status === "failed") {
+                  toast.error(data.message);
+                } else if (data.status == "success") {
+                  toast.success("NFT minted successfully");
+                  setTimeout(() => {
+                    router.push("/");
+                  }, 0);
+                }
+              });
+              setQrcode(data.url);
+              setShowBarCode(true);
+            } else if (isMobile) {
+              router.push(data.url);
+            }
           });
-        } else if (isMobile) {
-          makeApiCall(endpoint, method, data).then((data) => {
-            router.push(data.url);
+        } else {
+          makeApiCall(endpoint, id, method, data).then((data) => {
+            if (isDesktop) {
+              socket.on(`${socketChannel}-${id}`, (data) => {
+                if (data.status === "failed") {
+                  toast.error(data.message);
+                } else if (data.status == "success") {
+                  toast.success("Wallet connected successfully");
+                  setTimeout(() => {
+                    router.push("/home");
+                  }, 0);
+                }
+              });
+              setQrcode(data.url);
+              setShowBarCode(true);
+            } else if (isMobile) {
+              router.push(data.url);
+            }
           });
         }
       } catch (error) {
@@ -60,6 +81,12 @@ const QrPopUpModal: FC<QrPopUpModal> = ({
       }
     };
     connectWallet();
+  }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("toekn")) {
+      router.push("/home");
+    }
   }, []);
 
   console.log(qrcode);
@@ -85,6 +112,7 @@ const QrPopUpModal: FC<QrPopUpModal> = ({
               onClick={onClose}
             />
           </section>
+
           {/* middle section */}
           <section className="w-full">
             {showBarCode ? (
@@ -99,11 +127,12 @@ const QrPopUpModal: FC<QrPopUpModal> = ({
                 </div>
               </div>
             ) : (
-              <div className="flex items-center justify-center w-full min-h-[calc(100vh-12rem)] md:min-h-screen   ">
+              <div className="flex items-center justify-center w-full  md:min-h-screen   ">
                 <Icons.loader className="animate-spin h-20 w-20  text-white" />
               </div>
             )}
           </section>
+
           {/* bottom section */}
           <section className=" flex flex-col items-center gap-3">
             <div className="flex items-center gap-1 ">

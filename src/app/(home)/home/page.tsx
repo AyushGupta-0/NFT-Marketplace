@@ -10,7 +10,6 @@ import Slider from "@/components/Slider";
 // icons
 import { FiChevronRight } from "react-icons/fi";
 import NftCollectionModal from "@/components/NftCollectionModal";
-import { useAppSelector } from "@/lib/redux/store";
 import { makeApiCall } from "@/helpers/apiCall";
 
 type Props = {};
@@ -27,11 +26,9 @@ const ranking = ["1", "2", "3", "4", "5"];
 
 export default function Page({}: Props) {
   const [allNfts, setAllNfts] = React.useState<any[]>([]);
-  const { entities } = useAppSelector((state) => state.userSlice);
 
-  console.log(entities);
   useEffect(() => {
-    const fetcPosts = () => {
+    const fetcPosts = async () => {
       makeApiCall("/v1/nfts")
         .then((data) => setAllNfts(data))
         .catch((err) => console.log(err));
