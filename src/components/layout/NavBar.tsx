@@ -49,7 +49,7 @@ export default function NavBar({}: Props) {
         </div>
 
         {/* right side */}
-        <div className="flex flex-row items-center justify-start md:gap-6 gap-3 text-base text-placeholder">
+        <div className="flex   flex-row items-center justify-start md:gap-6 gap-3 text-base text-placeholder">
           {/* search input */}
           <div className=" relative ">
             <input
