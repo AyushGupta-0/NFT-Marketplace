@@ -16,19 +16,19 @@ type Props = {};
 const collectionNft = [
   {
     name: "Immersive Visions",
-    src: "/assets/nft-demo-1.png",
+    src: "public/rectangle-162@2x.png",
   },
   {
     name: "Immersive Visions",
-    src: "/assets/nft-demo-1.png",
+    src: "public/rectangle-162@2x.png",
   },
   {
     name: "Immersive Visions",
-    src: "/assets/nft-demo-1.png",
+    src: "public/rectangle-162@2x.png",
   },
   {
     name: "Immersive Visions",
-    src: "/assets/nft-demo-1.png",
+    src: "public/rectangle-162@2x.png",
   },
 ];
 
