@@ -143,7 +143,7 @@ export default function Footer({}: Props) {
 
         {/* Bottom  Section */}
         <div className="box-border w-full flex flex-row pt-8 px-0 pb-0 items-center justify-center text-center text-base border-t-[1px] border-solid border-line">
-          <h1 className="">© 2023 . XRP Boys | Alright Reserved</h1>
+          <h1 className="">© 2023 . XRP Boys | Made by Ayush Gupta </h1>
         </div>
       </div>
     </footer>
