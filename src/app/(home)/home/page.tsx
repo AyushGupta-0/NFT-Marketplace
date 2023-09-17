@@ -18,6 +18,18 @@ const collectionNft = [
     name: "Immersive Visions",
     src: "/assets/nft-demo-1.png",
   },
+  {
+    name: "Immersive Visions",
+    src: "/assets/nft-demo-1.png",
+  },
+  {
+    name: "Immersive Visions",
+    src: "/assets/nft-demo-1.png",
+  },
+  {
+    name: "Immersive Visions",
+    src: "/assets/nft-demo-1.png",
+  },
 ];
 
 const trendingTime = ["1h", "6h", "12h", "1d"];
@@ -49,7 +61,7 @@ export default function Page({}: Props) {
           Collections{" "}
         </h1>
         <div className="w-full overflow-x-scroll scrollbar-hide h-full flex gap-4">
-          {allNfts.map((items, i) => {
+          {collectionNft.map((items, i) => {
             return (
               <div key={i}>
                 <NftCollectionModal data={items} />

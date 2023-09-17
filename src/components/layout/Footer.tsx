@@ -45,12 +45,12 @@ const marketPlaceLinks = [
 ];
 
 const accountLinks = [
-  { name: "My Profile", link: "/" },
+  { name: "My Profile", link: "/profile" },
   { name: "Collection", link: "/" },
   { name: "Favorites", link: "/favorites" },
   { name: "Watchlist", link: "/" },
   { name: "Create", link: "/" },
-  { name: "Settings", link: "/" },
+  { name: "Settings", link: "/notification" },
 ];
 
 const pagesLinks = [

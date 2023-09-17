@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { FC } from "react";
+import Link from "next/link";
+
 
 import demoNft from "@/assets/banner-demo.png";
 import Button from "./ui/Button";
@@ -32,7 +34,7 @@ const Slider: FC<SliderProps> = ({ data }) => {
 
         {/* buttons */}
         <div className="flex gap-3 justify-between items-center  text-base ">
-          <Button className="w-full md:max-w-max">Minting Now</Button>
+          <Link href="/mint"><Button className="w-full md:max-w-max">Minting Now</Button></Link>
           <Button className="w-full md:max-w-max">View Collections</Button>
         </div>
       </div>
